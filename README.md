@@ -4,7 +4,7 @@
 ![Android](https://img.shields.io/badge/Android-Studio-blue)
 # Projet Entrevoisins
 ## Présentation 
-Maréu - Application de gestion de réunions
+Maréu - Application de gestion de réunions  
 Cette application est développé par l'entreprise __Lamzone__.
 
 Les sources de l'application sont dans le répertoire __/Mareu__.
