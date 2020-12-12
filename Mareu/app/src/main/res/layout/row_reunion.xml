@@ -1,41 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_margin="10dp"
+    app:cardCornerRadius="8dp">
 
-    <TextView
-        android:id="@+id/reunion_sujet"
-        android:text="sujet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"/>
-    <TextView
-        android:id="@+id/reunion_salle"
-        android:text="salle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/reunion_id"
-        android:text="id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/reunion_date_debut"
-        android:text="date et heure debut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/reunion_date_fin"
-        android:text="heure de fin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/reunion_participant"
-        android:text="liste des participants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
 
-</LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/reunion_sujet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sujet"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/reunion_salle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="salle"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/reunion_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="id" />
+
+        <TextView
+            android:id="@+id/reunion_date_debut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="date et heure debut" />
+
+        <TextView
+            android:id="@+id/reunion_date_fin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="heure de fin" />
+
+        <TextView
+            android:id="@+id/reunion_participant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="liste des participants" />
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
