@@ -22,7 +22,7 @@ public class ListenerDeleteReunion implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Log.d(TAG, "onClick() called with: sujet = [" + this.reunion.getSujet() + "]");
+        Log.d(TAG, "onClick() called with: reunion.sujet = [" + this.reunion.getSujet() + "]");
         ReunionApiService myService = DI.getReunionApiService();
         myService.deleteReunion(this.reunion);
         this.reunionAdapter.notifyDataSetChanged();
