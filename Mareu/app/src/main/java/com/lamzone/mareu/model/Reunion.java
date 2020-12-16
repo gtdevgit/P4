@@ -9,9 +9,9 @@ public class Reunion {
     private Date dateDebut;
     private Date dateFin;
     private Long idSalle;
-    private List<Long> participants;
+    private List<String> participants;
 
-    public Reunion(Long id, String sujet, Date dateDebut, Date dateFin, Long idSalle, List<Long> participants) {
+    public Reunion(Long id, String sujet, Date dateDebut, Date dateFin, Long idSalle, List<String> participants) {
         this.id = id;
         this.sujet = sujet;
         this.dateDebut = dateDebut;
@@ -60,11 +60,21 @@ public class Reunion {
         this.idSalle = idSalle;
     }
 
-    public List<Long> getParticipants() {
+    public List<String> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<Long> participants) {
+    public void setParticipants(List<String> participants) {
         this.participants = participants;
+    }
+
+    public String listeParticipantToString(){
+        StringBuilder str = new StringBuilder();
+        for (String participant : this.participants)
+        {
+            str.append(participant);
+            str.append(", ");
+        }
+        return str.toString();
     }
 }

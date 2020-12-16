@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.lamzone.mareu.di.DI;
+import com.lamzone.mareu.listener.ListenerDeleteReunion;
 import com.lamzone.mareu.model.Collaborateur;
 import com.lamzone.mareu.model.Reunion;
 import com.lamzone.mareu.model.Salle;
@@ -20,39 +23,15 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private ReunionAdapter reunionAdapter;
+    private Button btRefrech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ReunionApiService myService = DI.getReunionApiService();
-        Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
-        Log.d(TAG, "onCreate() called with: myService = [" + myService + "]");
-        Log.d(TAG, "myService.getSalles() = [" + myService.getSalles() + "]");
-        Log.d(TAG, "myService.getCollaborateurs() = [" + myService.getCollaborateurs() + "]");
-        Log.d(TAG, "myService.getReunions() = [" + myService.getReunions() + "]");
-        for (int i = 0; i < myService.getReunions().size() ; i++)
-        {
-            Reunion reunion = myService.getReunions().get(i);
-            Log.d(TAG, "reunions.getId() = [" + reunion.getId() + "]");
-            Log.d(TAG, "reunions.getSujet() = [" + reunion.getSujet() + "]");
-            Log.d(TAG, "reunions.getDateDebut() = [" + reunion.getDateDebut() + "]");
-            Log.d(TAG, "reunions.getDateFin() = [" + reunion.getDateFin() + "]");
-            Log.d(TAG, "reunions.getIdSalle() = [" + reunion.getIdSalle() + "]");
-            Salle salle = myService.findSalleById(reunion.getIdSalle());
-            Log.d(TAG, "Salle.id = [" + salle.getId() + "]");
-            Log.d(TAG, "Salle.getNom = [" + salle.getNom() + "]");
 
-            Log.d(TAG, "reunions.getParticipants() = [" + reunion.getParticipants() + "]");
-
-            for (int j = 0; j < reunion.getParticipants().size() ; j++)
-            {
-                long id = reunion.getParticipants().get(j);
-                Collaborateur collaborateur = myService.findCollaborateurById(id);
-                Log.d(TAG, "collaborateur.getId() = [" + collaborateur.getId() + "]");
-                Log.d(TAG, "collaborateur.getEmail() = [" + collaborateur.getEmail() + "]");
-            }
-        }
+        btRefrech = findViewById(R.id.bt_refresh);
 
         recyclerView = findViewById(R.id.reunion_recyclerview);
         layoutManager = new LinearLayoutManager(this);
@@ -64,5 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
+        btRefrech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reunionAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }

@@ -1,15 +1,18 @@
 package com.lamzone.mareu;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lamzone.mareu.di.DI;
-import com.lamzone.mareu.model.Collaborateur;
+import com.lamzone.mareu.listener.ListenerDeleteReunion;
 import com.lamzone.mareu.model.Reunion;
 import com.lamzone.mareu.model.Salle;
 import com.lamzone.mareu.service.ReunionApiService;
@@ -21,26 +24,30 @@ import java.util.List;
 
 public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionViewHolder> {
 
+    private static final String TAG = "ReunionAdapter";
+
     private List<Reunion> listeReunion;
     private ReunionApiService service = DI.getReunionApiService();
+    private ListenerDeleteReunion listenerDeleteReunion;
+
+    public void setListenerDeleteReunion(ListenerDeleteReunion listenerDeleteReunion) {
+        Log.d(TAG, "setListenerDeleteReunion() called with: listenerDeleteReunion = [" + listenerDeleteReunion + "]");
+        this.listenerDeleteReunion = listenerDeleteReunion;
+    }
 
     public static class ReunionViewHolder extends RecyclerView.ViewHolder {
 
-        TextView sujet;
-        TextView salle;
-        TextView id;
-        TextView debut;
-        TextView fin;
+        TextView titre;
         TextView participants;
+        ImageView rond;
+        ImageButton buttonDelete;
 
         public ReunionViewHolder(@NonNull View itemView) {
             super(itemView);
-            sujet = itemView.findViewById(R.id.reunion_sujet);
-            salle = itemView.findViewById(R.id.reunion_salle);
-            id = itemView.findViewById(R.id.reunion_id);
-            debut = itemView.findViewById(R.id.reunion_date_debut);
-            fin = itemView.findViewById(R.id.reunion_date_fin);
+            titre = itemView.findViewById(R.id.reunion_titre);
             participants = itemView.findViewById(R.id.reunion_participant);
+            rond = itemView.findViewById(R.id.image_rond);
+            buttonDelete = itemView.findViewById(R.id.button_delete);
         }
     }
 
@@ -59,44 +66,21 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionV
     @Override
     public void onBindViewHolder(@NonNull ReunionViewHolder holder, int position) {
         Reunion reunion = listeReunion.get(position);
-        holder.sujet.setText(reunion.getSujet());
-
         Salle salle = service.findSalleById(reunion.getIdSalle());
-        holder.salle.setText(salle.getNom());
-
-        holder.id.setText(reunion.getId().toString());
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-
+        String nomSalle = salle.getNom();
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
         Date dateDebut = reunion.getDateDebut();
         String strDateDebut = dateFormat.format(dateDebut);
-        holder.debut.setText(strDateDebut);
-
-        Date dateFin = reunion.getDateFin();
-        String strDateFin = dateFormat.format(dateFin);
-        holder.fin.setText(strDateFin);
-
-        String strParticipants = listeParticipantToString(reunion.getParticipants());
-        holder.participants.setText(strParticipants);
-    }
-
-    private String listeParticipantToString(List<Long> participants){
-        StringBuilder str = new StringBuilder();
-
-        for (int i = 0; i < participants.size() ; i++)
-        {
-            long id = participants.get(i);
-            Collaborateur collaborateur = service.findCollaborateurById(id);
-            str.append(collaborateur.getEmail());
-            str.append("; ");
-        }
-        return str.toString();
+        String titre = reunion.getSujet() + " - " + strDateDebut + " - " + nomSalle;
+        holder.titre.setText(titre);
+        holder.participants.setText(reunion.listeParticipantToString());
+        int color= salle.getColor();
+        holder.rond.setColorFilter(color);
+        holder.buttonDelete.setOnClickListener(new ListenerDeleteReunion(this, reunion));
     }
 
     @Override
     public int getItemCount() {
         return listeReunion.size();
     }
-
-
 }

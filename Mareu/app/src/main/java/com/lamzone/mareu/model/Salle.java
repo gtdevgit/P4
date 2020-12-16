@@ -3,10 +3,12 @@ package com.lamzone.mareu.model;
 public class Salle {
     private Long id;
     private String nom;
+    private int color;
 
-    public Salle(Long id, String nom) {
+    public Salle(Long id, String nom, int color) {
         this.id = id;
         this.nom = nom;
+        this.color = color;
     }
 
     public Long getId() {
@@ -23,5 +25,13 @@ public class Salle {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }

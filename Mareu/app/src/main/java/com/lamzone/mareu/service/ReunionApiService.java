@@ -22,7 +22,7 @@ public interface ReunionApiService {
      * @return {@link List}
      */
 
-    List<Collaborateur> getCollaborateurs();
+    List<String> getCollaborateurs();
 
     /**
      * Liste des réunions
@@ -31,6 +31,7 @@ public interface ReunionApiService {
     List<Reunion> getReunions();
 
     Salle findSalleById(long id);
-    Collaborateur findCollaborateurById(long id);
+
+    void deleteReunion(Reunion reunion);
 
 }
