@@ -9,23 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mareu">
-        <activity
-            android:name=".ReunionsListActivity"
-            android:label="@string/title_reunions_list"
-            android:theme="@style/Theme.Mareu.NoActionBar"></activity>
-        <activity
-            android:name=".ReunionsDetailActivity"
-            android:label="@string/title_reunions_detail"
-            android:parentActivityName=".ReunionsListActivity"
-            android:theme="@style/Theme.Mareu.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.lamzone.mareu.ReunionsListActivity" />
-        </activity>
+        <activity android:name=".AddActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
