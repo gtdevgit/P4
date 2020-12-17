@@ -2,4 +2,11 @@
     <string name="app_name">Mareu</string>
     <string name="title_reunions_list">Reunion</string>
     <string name="title_reunions_detail">Reunions Detail</string>
+    <string name="confirm">Confirmer</string>
+    <string name="confirm_delete_reunion">Confirmer la suppression de la réunion</string>
+    <string name="are_you_sure">Etes-vous sûr ?</string>
+    <string name="ok">Ok</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="cancel">Annuler</string>
 </resources>

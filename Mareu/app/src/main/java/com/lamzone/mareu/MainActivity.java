@@ -23,15 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private ReunionAdapter reunionAdapter;
-    private Button btRefrech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ReunionApiService myService = DI.getReunionApiService();
-
-        btRefrech = findViewById(R.id.bt_refresh);
 
         recyclerView = findViewById(R.id.reunion_recyclerview);
         layoutManager = new LinearLayoutManager(this);
@@ -42,12 +39,5 @@ public class MainActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
-
-        btRefrech.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reunionAdapter.notifyDataSetChanged();
-            }
-        });
     }
 }

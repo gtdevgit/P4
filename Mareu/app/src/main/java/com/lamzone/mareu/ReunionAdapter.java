@@ -37,14 +37,18 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionV
 
     public static class ReunionViewHolder extends RecyclerView.ViewHolder {
 
-        TextView titre;
+        TextView sujet;
+        TextView salle;
+        TextView date;
         TextView participants;
         ImageView rond;
         ImageButton buttonDelete;
 
         public ReunionViewHolder(@NonNull View itemView) {
             super(itemView);
-            titre = itemView.findViewById(R.id.reunion_titre);
+            sujet = itemView.findViewById(R.id.reunion_subject);
+            salle = itemView.findViewById(R.id.reunion_room);
+            date = itemView.findViewById(R.id.reunion_date);
             participants = itemView.findViewById(R.id.reunion_participant);
             rond = itemView.findViewById(R.id.image_rond);
             buttonDelete = itemView.findViewById(R.id.button_delete);
@@ -67,12 +71,13 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionV
     public void onBindViewHolder(@NonNull ReunionViewHolder holder, int position) {
         Reunion reunion = listeReunion.get(position);
         Salle salle = service.findSalleById(reunion.getIdSalle());
-        String nomSalle = salle.getNom();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+
+        holder.sujet.setText(reunion.getSujet());
+        holder.salle.setText(salle.getNom());
         Date dateDebut = reunion.getDateDebut();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
         String strDateDebut = dateFormat.format(dateDebut);
-        String titre = reunion.getSujet() + " - " + strDateDebut + " - " + nomSalle;
-        holder.titre.setText(titre);
+        holder.date.setText(strDateDebut);
         holder.participants.setText(reunion.listeParticipantToString());
         int color= salle.getColor();
         holder.rond.setColorFilter(color);
