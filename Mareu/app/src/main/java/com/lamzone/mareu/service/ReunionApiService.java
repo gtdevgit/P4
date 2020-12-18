@@ -31,7 +31,18 @@ public interface ReunionApiService {
     List<Reunion> getReunions();
 
     Salle findSalleById(long id);
+    Salle findSalleByNom(String nom);
+
 
     void deleteReunion(Reunion reunion);
+    String[] arrayNomSalle();
+
+    /**
+     * Ajouter une réunion
+     * @return {@link long}
+     * return l'id de la réunion
+     */
+
+    long ajouterReunion(Reunion reunion);
 
 }

@@ -1,5 +1,6 @@
 package com.lamzone.mareu;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,8 +80,10 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionV
         String strDateDebut = dateFormat.format(dateDebut);
         holder.date.setText(strDateDebut);
         holder.participants.setText(reunion.listeParticipantToString());
-        int color= salle.getColor();
+
+        int color = salle.getColor();
         holder.rond.setColorFilter(color);
+
         holder.buttonDelete.setOnClickListener(new ListenerDeleteReunion(this, reunion));
     }
 

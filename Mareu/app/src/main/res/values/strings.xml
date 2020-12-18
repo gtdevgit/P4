@@ -9,4 +9,17 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="cancel">Annuler</string>
+    <string name="sujet">Sujet</string>
+    <string name="floatingAddDescription">Boutton créer une réunion</string>
+
+    <string-array name="country__arrays">
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
 </resources>

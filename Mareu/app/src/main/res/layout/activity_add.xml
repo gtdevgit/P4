@@ -6,4 +6,146 @@
     android:layout_height="match_parent"
     tools:context=".AddActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_ajout_reunion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Ajouter une réunion"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_ajout_reunion">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_sujet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_sujet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:hint="@string/sujet"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinner_salle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Salle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_sujet_layout"
+            android:entries="@array/country__arrays"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_date_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_salle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:focusableInTouchMode="false"
+                android:hint="Date"
+                android:inputType="date"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_email_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_ajouter_email"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/input_date_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:focusableInTouchMode="true"
+                android:hint="Email participant"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/button_ajouter_email"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:adjustViewBounds="true"
+            android:backgroundTint="@color/white"
+            android:cropToPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_date_layout"
+            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+
+        <TextView
+            android:id="@+id/input_liste_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_email_layout"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_validation_formulaire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" >
+
+            <Button
+                android:id="@+id/button_annuler_creer_reunion"
+                android:text="Annuler"
+                android:hint="Annuler la création de la réunion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:id="@+id/button_valider_creer_reunion"
+                android:text="Valider"
+                android:hint="Valider la création de la réunion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_weight="1"
+                 />
+
+        </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

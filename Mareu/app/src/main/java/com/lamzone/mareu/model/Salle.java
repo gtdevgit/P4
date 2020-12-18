@@ -1,5 +1,7 @@
 package com.lamzone.mareu.model;
 
+import android.graphics.Color;
+
 public class Salle {
     private Long id;
     private String nom;
