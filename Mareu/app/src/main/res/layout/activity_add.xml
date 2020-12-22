@@ -45,7 +45,9 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.lamzone.mareu.di.DI;
@@ -67,11 +68,14 @@ public class AddActivity extends AppCompatActivity {
 
     // charge la liste des salles dans le spinner
     private void initSalles(){
-        ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item,
-                service.arrayNomSalle());
-        spinnerSalle.setAdapter(adapter);
+//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, service.arrayNomSalle());
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, service.arrayNomSalle());
+//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, service.getSalles());
 
+        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, R.layout.custom_spinner, service.getSalles());
+        // mise en page
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSalle.setAdapter(adapter);
     }
 
     private void initDatePicker(){
@@ -83,18 +87,14 @@ public class AddActivity extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
                                 final int month = monthOfYear + 1;
-
                                 new TimePickerDialog(v.getContext(),
                                         new TimePickerDialog.OnTimeSetListener() {
-
                                             @Override
                                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                                 Calendar cal = Calendar.getInstance();
                                                 cal.clear();
                                                 cal.set(year, monthOfYear, dayOfMonth, hourOfDay, minute);
-
                                                 Date date = cal.getTime();
-
                                                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
                                                 String strDateDebut = dateFormat.format(date);
                                                 textInputDate.setText(strDateDebut);
@@ -106,7 +106,6 @@ public class AddActivity extends AppCompatActivity {
                         .show();
             }
         });
-
     }
 
     // trf le mail saisie dans la liste des mails
@@ -148,19 +147,30 @@ public class AddActivity extends AppCompatActivity {
 //                Intent intent = getIntent();
 //                intent.putExtra('id_reunion', idReunion);
                 String sujet = textInputSujet.getText().toString();
-                // A changer en List<salle>
-                String nomSalle = spinnerSalle.getSelectedItem().toString();
-                Salle salle = service.findSalleByNom(nomSalle);
                 String strDate = textInputDate.getText().toString();
+                if ((sujet.trim().length() > 0) && (strDate.trim().length() > 0)) {
+                    // A changer en List<salle>
+                    String nomSalle = spinnerSalle.getSelectedItem().toString();
+                    Salle salle = service.findSalleByNom(nomSalle);
 //                GregorianCalendar grDate = new GregorianCalendar(())
-                Date date = new Date();
-                String strEmail = textViewListeEmail.getText().toString();
-                String[] arrayEmail = strEmail.split("\n" );
-                List<String> lstEmail = Arrays.asList(arrayEmail);
-                Reunion reunion = new Reunion(-1L, sujet, date, date, salle.getId(), lstEmail);
-                long newId = service.ajouterReunion(reunion);
-                setResult(RESULTCODE_VALIDER_CRER_ACTIVITY);
-                finish();
+                    Date date = new Date();
+                    String strEmail = textViewListeEmail.getText().toString();
+                    String[] arrayEmail = strEmail.split("\n");
+                    List<String> lstEmail = Arrays.asList(arrayEmail);
+                    Reunion reunion = new Reunion(-1L, sujet, date, date, salle.getId(), lstEmail);
+                    long newId = service.ajouterReunion(reunion);
+                    setResult(RESULTCODE_VALIDER_CRER_ACTIVITY);
+                    finish();
+                } else {
+                    if (sujet.trim().length() == 0){
+                        textInputSujet.requestFocus();
+                        Toast.makeText(getApplicationContext(), "Pour ajouter une réunion vous devez renseigner un sujet !", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (strDate.trim().length() == 0) {
+                            Toast.makeText(getApplicationContext(), "Pour ajouter une réunion vous devez renseigner une date !", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
             }
         });
     }
