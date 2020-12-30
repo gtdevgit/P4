@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lamzone.mareu.di.DI;
 import com.lamzone.mareu.listener.ListenerDeleteReunion;
+import com.lamzone.mareu.listener.ListenerNotifyDataChanged;
 import com.lamzone.mareu.model.Reunion;
 import com.lamzone.mareu.model.Salle;
 import com.lamzone.mareu.service.ReunionApiService;
@@ -26,15 +27,6 @@ import java.util.List;
 public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionViewHolder> {
 
     private static final String TAG = "ReunionAdapter";
-
-    private List<Reunion> listeReunion;
-    private ReunionApiService service = DI.getReunionApiService();
-    private ListenerDeleteReunion listenerDeleteReunion;
-
-    public void setListenerDeleteReunion(ListenerDeleteReunion listenerDeleteReunion) {
-        Log.d(TAG, "setListenerDeleteReunion() called with: listenerDeleteReunion = [" + listenerDeleteReunion + "]");
-        this.listenerDeleteReunion = listenerDeleteReunion;
-    }
 
     public static class ReunionViewHolder extends RecyclerView.ViewHolder {
 
@@ -56,8 +48,21 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionV
         }
     }
 
-    public ReunionAdapter(List<Reunion> listeReunion) {
-        this.listeReunion = listeReunion;
+    private ReunionApiService service;
+    private ListenerNotifyDataChanged listenerNotifyDataChanged;
+    private ListenerDeleteReunion listenerDeleteReunion;
+
+    public ReunionAdapter(ReunionApiService service, ListenerNotifyDataChanged listenerNotifyDataChanged) {
+        this.service = service;
+        this.listenerNotifyDataChanged = listenerNotifyDataChanged;
+    }
+
+    public ListenerNotifyDataChanged getListenerNotifyDataChanged() {
+        return listenerNotifyDataChanged;
+    }
+
+    public void setListenerNotifyDataChanged(ListenerNotifyDataChanged listenerNotifyDataChanged) {
+        this.listenerNotifyDataChanged = listenerNotifyDataChanged;
     }
 
     @NonNull
@@ -70,7 +75,7 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionV
 
     @Override
     public void onBindViewHolder(@NonNull ReunionViewHolder holder, int position) {
-        Reunion reunion = listeReunion.get(position);
+        Reunion reunion = service.getReunions().get(position);
         Salle salle = service.findSalleById(reunion.getIdSalle());
 
         holder.sujet.setText(reunion.getSujet());
@@ -83,12 +88,11 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionV
 
         int color = salle.getColor();
         holder.rond.setColorFilter(color);
-
-        holder.buttonDelete.setOnClickListener(new ListenerDeleteReunion(this, reunion));
+        holder.buttonDelete.setOnClickListener(new ListenerDeleteReunion(getListenerNotifyDataChanged(), reunion));
     }
 
     @Override
     public int getItemCount() {
-        return listeReunion.size();
+        return service.getReunions().size();
     }
 }

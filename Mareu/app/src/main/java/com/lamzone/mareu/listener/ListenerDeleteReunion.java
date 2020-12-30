@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.lamzone.mareu.R;
-import com.lamzone.mareu.ReunionAdapter;
 import com.lamzone.mareu.di.DI;
 import com.lamzone.mareu.model.Reunion;
 import com.lamzone.mareu.service.ReunionApiService;
@@ -16,19 +15,19 @@ public class ListenerDeleteReunion implements View.OnClickListener{
 
     private static final String TAG = "ListenerDeleteReunion";
 
-    private ReunionAdapter reunionAdapter;
+    private ListenerNotifyDataChanged listenerNotifyDataChanged;
     private Reunion reunion;
 
-    public ListenerDeleteReunion(ReunionAdapter reunionAdapter, Reunion reunion) {
+    public ListenerDeleteReunion(ListenerNotifyDataChanged listenerNotifyDataChanged, Reunion reunion) {
+        this.listenerNotifyDataChanged = listenerNotifyDataChanged;
         this.reunion = reunion;
-        this.reunionAdapter = reunionAdapter;
     }
 
     private void deleteReunion()
     {
         ReunionApiService myService = DI.getReunionApiService();
         myService.deleteReunion(this.reunion);
-        this.reunionAdapter.notifyDataSetChanged();
+        listenerNotifyDataChanged.onDataChanged();
     }
 
     @Override

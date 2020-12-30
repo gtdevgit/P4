@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lamzone.mareu.di.DI;
 import com.lamzone.mareu.listener.ListenerDeleteReunion;
+import com.lamzone.mareu.listener.ListenerNotifyDataChanged;
 import com.lamzone.mareu.model.Collaborateur;
 import com.lamzone.mareu.model.Reunion;
 import com.lamzone.mareu.model.Salle;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final int REQUESTCODE_START_ACTIVITY_ADD_ACTIVITY = 1001;
+
+    private ListenerNotifyDataChanged listenerNotifyDataChanged;
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -37,12 +40,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ReunionApiService myService = DI.getReunionApiService();
-
         recyclerView = findViewById(R.id.reunion_recyclerview);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        reunionAdapter = new ReunionAdapter(myService.getReunions());
+        ReunionApiService myService = DI.getReunionApiService();
+        listenerNotifyDataChanged = new ListenerNotifyDataChanged() {
+            @Override
+            public void onDataChanged() {
+                Log.d(TAG, "onDataChanged() called");
+                reunionAdapter.notifyDataSetChanged();
+            }
+        };
+        reunionAdapter = new ReunionAdapter(myService, listenerNotifyDataChanged);
         recyclerView.setAdapter(reunionAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
@@ -65,14 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == REQUESTCODE_START_ACTIVITY_ADD_ACTIVITY) {
             if (resultCode == AddActivity.RESULTCODE_ANNULER_CRER_ACTIVITY) {
-                // rien !
-                Toast.makeText(getApplicationContext(), "Création de réunion annulée", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.cancel_create_metting, Toast.LENGTH_SHORT).show();
             } else {
                 if (resultCode == AddActivity.RESULTCODE_VALIDER_CRER_ACTIVITY)
                 {
-                    // Rafraichir adapter
-                    // se positonner sur la derniére réunion
-                    Toast.makeText(getApplicationContext(), "Nouvelle réunion créer", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.confirm_create_metting, Toast.LENGTH_SHORT).show();
                     reunionAdapter.notifyDataSetChanged();
                 }
             }

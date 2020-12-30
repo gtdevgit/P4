@@ -58,8 +58,7 @@
             android:hint="Salle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_sujet_layout"
-            android:entries="@array/country__arrays"/>
+            app:layout_constraintTop_toBottomOf="@+id/input_sujet_layout"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_date_layout"
