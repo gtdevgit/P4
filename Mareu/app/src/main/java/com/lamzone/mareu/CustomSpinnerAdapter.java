@@ -26,21 +26,21 @@ public class CustomSpinnerAdapter extends ArrayAdapter<Salle> {
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        //return super.getDropDownView(position, convertView, parent);
         return getCustomView(position, convertView, parent);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        //return super.getView(position, convertView, parent);
         return getCustomView(position, convertView, parent);
     }
 
     private View getCustomView(final int position, View convertView, ViewGroup parent){
         View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_spinner, parent, false);
+
         final ImageView imageViewSalle = (ImageView) row.findViewById(R.id.custom_spinner_item_image);
         final TextView textViewSalle = (TextView) row.findViewById(R.id.custom_spinner_item_text);
+
         Salle salle = salles.get(position);
 
         imageViewSalle.setColorFilter(salle.getColor());

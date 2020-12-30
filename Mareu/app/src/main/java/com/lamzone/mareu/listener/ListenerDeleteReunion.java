@@ -37,6 +37,7 @@ public class ListenerDeleteReunion implements View.OnClickListener{
         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
         builder.setTitle(R.string.confirm_delete_reunion);
         builder.setMessage(R.string.are_you_sure);
+        builder.setIcon(R.drawable.ic_baseline_contact_support_24);
         builder.setCancelable(false);
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override

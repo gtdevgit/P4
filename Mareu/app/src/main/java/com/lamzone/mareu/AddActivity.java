@@ -73,8 +73,6 @@ public class AddActivity extends AppCompatActivity {
 //        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, service.getSalles());
 
         CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, R.layout.custom_spinner, service.getSalles());
-        // mise en page
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSalle.setAdapter(adapter);
     }
 
@@ -149,10 +147,7 @@ public class AddActivity extends AppCompatActivity {
                 String sujet = textInputSujet.getText().toString();
                 String strDate = textInputDate.getText().toString();
                 if ((sujet.trim().length() > 0) && (strDate.trim().length() > 0)) {
-                    // A changer en List<salle>
-                    String nomSalle = spinnerSalle.getSelectedItem().toString();
-                    Salle salle = service.findSalleByNom(nomSalle);
-//                GregorianCalendar grDate = new GregorianCalendar(())
+                    Salle salle = (Salle) spinnerSalle.getSelectedItem();
                     Date date = new Date();
                     String strEmail = textViewListeEmail.getText().toString();
                     String[] arrayEmail = strEmail.split("\n");
