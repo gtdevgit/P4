@@ -7,6 +7,7 @@ import com.lamzone.mareu.model.Reunion;
 import com.lamzone.mareu.model.Salle;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DummyReunionApiService implements ReunionApiService{
@@ -43,14 +44,34 @@ public class DummyReunionApiService implements ReunionApiService{
     }
 
     @Override
-    public Salle findSalleByNom(String nom) {
-        for (Salle salle : salles) {
-            if (salle.getNom() == nom) {
-                return salle;
+    public void filtrerReunionsParSalle(long idSalle) {
+        reunions.clear();
+        List<Reunion> r = DummyGenerator.generateReunions();
+        for (int i=0; i<r.size(); i++){
+            Reunion reunion = r.get(i);
+            if (reunion.getIdSalle() == idSalle) {
+                reunions.add(reunion);
             }
         }
-        return null;
     }
+
+    @Override
+    public void filtrerReunionsParDate(Date date){
+        reunions.clear();
+        List<Reunion> r = DummyGenerator.generateReunions();
+        for (int i=0; i<r.size(); i++){
+            Reunion reunion = r.get(i);
+            if (reunion.getDateDebut().compareTo(date) == 0) {
+                reunions.add(reunion);
+            }
+        }
+    }
+
+    @Override
+    public void supprimerFiltreReunion(){
+        reunions = DummyGenerator.generateReunions();
+    }
+
 
     @Override
     public void deleteReunion(Reunion reunion) {

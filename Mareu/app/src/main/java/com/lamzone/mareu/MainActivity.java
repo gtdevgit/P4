@@ -1,5 +1,6 @@
 package com.lamzone.mareu;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -10,9 +11,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+//import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lamzone.mareu.di.DI;
@@ -22,6 +28,9 @@ import com.lamzone.mareu.model.Collaborateur;
 import com.lamzone.mareu.model.Reunion;
 import com.lamzone.mareu.model.Salle;
 import com.lamzone.mareu.service.ReunionApiService;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,15 +44,19 @@ public class MainActivity extends AppCompatActivity {
     private ReunionAdapter reunionAdapter;
     private FloatingActionButton floatingActionButton;
 
+    ReunionApiService myService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         recyclerView = findViewById(R.id.reunion_recyclerview);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        ReunionApiService myService = DI.getReunionApiService();
+        myService = DI.getReunionApiService();
         listenerNotifyDataChanged = new ListenerNotifyDataChanged() {
             @Override
             public void onDataChanged() {
@@ -66,6 +79,49 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUESTCODE_START_ACTIVITY_ADD_ACTIVITY);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Affichage du menu
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Actions du menu
+        switch (item.getItemId()) {
+            case R.id.menu_item_filtrer_date :
+                filtrerDate();
+                break;
+            case R.id.menu_item_filtrer_salle:
+                filtrerSalle();
+                break;
+            case R.id.menu_item_supprimer_filtre:
+                supprimerFiltre();
+                break;
+        }
+        return true;
+    }
+
+    private void filtrerDate(){
+        Log.d(TAG, "filtrerDate() called");
+        myService.filtrerReunionsParDate(new GregorianCalendar(2020, Calendar.DECEMBER, 10, 10, 30).getTime());
+        reunionAdapter.notifyDataSetChanged();
+    }
+
+    private void filtrerSalle(){
+        Log.d(TAG, "filtrerSalle() called");
+        myService.filtrerReunionsParSalle(12L);
+        reunionAdapter.notifyDataSetChanged();
+    }
+
+    private void supprimerFiltre(){
+        Log.d(TAG, "supprimerFiltre() called");
+        myService.supprimerFiltreReunion();
+        reunionAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -3,7 +3,10 @@
     <string name="title_reunions_list">Reunion</string>
     <string name="title_reunions_detail">Reunions Detail</string>
     <string name="confirm">Confirmer</string>
-    <string name="confirm_delete_reunion">Confirmer la suppression de la réunion</string>
+    <string name="delete_metting">Supprimer la réunion \"%1$s\"</string>
+    <string name="confirm_deleted_metting">Réunion supprimée</string>
+    <string name="cancel_deleted_metting">Annulation de la suppression</string>
+
     <string name="are_you_sure">Etes-vous sûr ?</string>
     <string name="ok">Ok</string>
     <string name="yes">Oui</string>
@@ -13,4 +16,7 @@
     <string name="floatingAddDescription">Boutton créer une réunion</string>
     <string name="cancel_create_metting">Création de réunion annulée</string>
     <string name="confirm_create_metting">Nouvelle réunion créée</string>
+    <string name="menu_item_title_filter_room">Filtrer par salle</string>
+    <string name="menu_item_title_filter_date">Filtrer par date</string>
+    <string name="menu_item_title_delete_filter">Supprimer le filtre</string>
 </resources>

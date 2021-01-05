@@ -4,6 +4,7 @@ import com.lamzone.mareu.model.Collaborateur;
 import com.lamzone.mareu.model.Reunion;
 import com.lamzone.mareu.model.Salle;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,10 +30,11 @@ public interface ReunionApiService {
      * @return {@link List}
      */
     List<Reunion> getReunions();
+    void filtrerReunionsParSalle(long idSalle);
+    void filtrerReunionsParDate(Date date);
+    void supprimerFiltreReunion();
 
     Salle findSalleById(long id);
-    Salle findSalleByNom(String nom);
-
 
     void deleteReunion(Reunion reunion);
     String[] arrayNomSalle();

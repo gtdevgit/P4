@@ -34,14 +34,14 @@ public class ListenerDeleteReunion implements View.OnClickListener{
     public void onClick(View v) {
         Log.d(TAG, "onClick() called with: reunion.sujet = [" + this.reunion.getSujet() + "]");
         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-        builder.setTitle(R.string.confirm_delete_reunion);
+        builder.setTitle(v.getContext().getString(R.string.delete_metting, this.reunion.getSujet()));
         builder.setMessage(R.string.are_you_sure);
         builder.setIcon(R.drawable.ic_baseline_contact_support_24);
         builder.setCancelable(false);
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(v.getContext(), R.string.yes, Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), R.string.confirm_deleted_metting, Toast.LENGTH_SHORT).show();
                 deleteReunion();
                 dialog.dismiss();
             }
@@ -49,7 +49,7 @@ public class ListenerDeleteReunion implements View.OnClickListener{
         builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(v.getContext(), R.string.no, Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), R.string.cancel_deleted_metting, Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
