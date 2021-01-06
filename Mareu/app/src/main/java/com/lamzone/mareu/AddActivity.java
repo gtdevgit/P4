@@ -39,6 +39,9 @@ public class AddActivity extends AppCompatActivity {
     public static final int RESULTCODE_ANNULER_CRER_ACTIVITY = 0;
     public static final int RESULTCODE_VALIDER_CRER_ACTIVITY = 1;
 
+    // ApiService
+    ReunionApiService service;
+
     // Composants
     private TextInputEditText textInputSujet;
     private Spinner spinnerSalle;
@@ -48,7 +51,19 @@ public class AddActivity extends AppCompatActivity {
     private TextView textViewListeEmail;
     Button btAnnuler, btValider;
 
-    ReunionApiService service;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add);
+
+        initService();
+        initComposants();
+        initSalles();
+        initDatePicker();
+        initBtAjouterEmail();
+        initBtAnnuler();
+        intiBtValider();
+    }
 
     private void initService(){
         service = DI.getReunionApiService();
@@ -66,16 +81,13 @@ public class AddActivity extends AppCompatActivity {
         btValider = (Button) findViewById(R.id.button_valider_creer_reunion);
     }
 
-    // charge la liste des salles dans le spinner
+    // charge la liste des salles dans le spinner personnalisé
     private void initSalles(){
-//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, service.arrayNomSalle());
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, service.arrayNomSalle());
-//        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, service.getSalles());
-
         CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, R.layout.custom_spinner, service.getSalles());
         spinnerSalle.setAdapter(adapter);
     }
 
+    // selection date et heure
     private void initDatePicker(){
         textInputDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,9 +153,6 @@ public class AddActivity extends AppCompatActivity {
         btValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                idReunion = service.ajouterReunion(new reunion(...));
-//                Intent intent = getIntent();
-//                intent.putExtra('id_reunion', idReunion);
                 String sujet = textInputSujet.getText().toString();
                 String strDate = textInputDate.getText().toString();
                 if ((sujet.trim().length() > 0) && (strDate.trim().length() > 0)) {
@@ -169,19 +178,4 @@ public class AddActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
-
-        initService();
-        initComposants();
-        initSalles();
-        initDatePicker();
-        initBtAjouterEmail();
-        initBtAnnuler();
-        intiBtValider();
-    }
-
 }

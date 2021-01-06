@@ -2,35 +2,29 @@ package com.lamzone.mareu;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Toast;
 //import android.widget.Toolbar;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lamzone.mareu.di.DI;
-import com.lamzone.mareu.listener.ListenerDeleteReunion;
 import com.lamzone.mareu.listener.ListenerNotifyDataChanged;
-import com.lamzone.mareu.model.Collaborateur;
-import com.lamzone.mareu.model.Reunion;
-import com.lamzone.mareu.model.Salle;
+import com.lamzone.mareu.listener.ListenerSelectionSalle;
 import com.lamzone.mareu.service.ReunionApiService;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -108,14 +102,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void filtrerDate(){
         Log.d(TAG, "filtrerDate() called");
-        myService.filtrerReunionsParDate(new GregorianCalendar(2020, Calendar.DECEMBER, 10, 10, 30).getTime());
-        reunionAdapter.notifyDataSetChanged();
+        // myService.filtrerReunionsParDate(new GregorianCalendar(2020, Calendar.DECEMBER, 10, 10, 30).getTime());
+        // reunionAdapter.notifyDataSetChanged();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        DatePicker picker = new DatePicker(this);
+        picker.setCalendarViewShown(false);
+
+        builder.setTitle("Create Year");
+        builder.setView(picker);
+        builder.setNegativeButton("Cancel", null);
+        builder.setPositiveButton("Set", null);
+
+        builder.show();
     }
 
     private void filtrerSalle(){
         Log.d(TAG, "filtrerSalle() called");
-        myService.filtrerReunionsParSalle(12L);
-        reunionAdapter.notifyDataSetChanged();
+        FiltrerSalleDialog filtrerSalleDialog = new FiltrerSalleDialog(new ListenerSelectionSalle() {
+            @Override
+            public void onSelectionSalle(long Id) {
+                myService.filtrerReunionsParSalle(Id);
+                reunionAdapter.notifyDataSetChanged();
+            }
+        });
+        filtrerSalleDialog.show(getSupportFragmentManager(), "MY_TAG");
     }
 
     private void supprimerFiltre(){

@@ -72,7 +72,6 @@ public class DummyReunionApiService implements ReunionApiService{
         reunions = DummyGenerator.generateReunions();
     }
 
-
     @Override
     public void deleteReunion(Reunion reunion) {
         Log.d(TAG, "deleteReunion() called with: reunion = [" + reunion + "]");

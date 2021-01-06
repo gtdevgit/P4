@@ -19,4 +19,14 @@
     <string name="menu_item_title_filter_room">Filtrer par salle</string>
     <string name="menu_item_title_filter_date">Filtrer par date</string>
     <string name="menu_item_title_delete_filter">Supprimer le filtre</string>
+
+    <string name="add_metting_title">Ajouter une réunion</string>
+    <string name="add_metting_room">Salle</string>
+    <string name="add_metting_date">Date</string>
+    <string name="add_metting_email">Email participant</string>
+    <string name="add_metting_validate">Valider</string>
+    <string name="add_metting_validate_hint">Valider la création de la réunion</string>
+    <string name="add_metting_cancel_hint">Annuler la création de la réunion</string>
+    <string name="add_metting_button_add_email_content_description">button ajouter email</string>
+
 </resources>
