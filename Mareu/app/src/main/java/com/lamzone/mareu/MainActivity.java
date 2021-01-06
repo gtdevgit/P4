@@ -23,8 +23,11 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lamzone.mareu.di.DI;
 import com.lamzone.mareu.listener.ListenerNotifyDataChanged;
-import com.lamzone.mareu.listener.ListenerSelectionSalle;
+import com.lamzone.mareu.listener.ListenerSelectDate;
+import com.lamzone.mareu.listener.ListenerSelectRoom;
 import com.lamzone.mareu.service.ReunionApiService;
+
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -102,31 +105,27 @@ public class MainActivity extends AppCompatActivity {
 
     private void filtrerDate(){
         Log.d(TAG, "filtrerDate() called");
-        // myService.filtrerReunionsParDate(new GregorianCalendar(2020, Calendar.DECEMBER, 10, 10, 30).getTime());
-        // reunionAdapter.notifyDataSetChanged();
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        DatePicker picker = new DatePicker(this);
-        picker.setCalendarViewShown(false);
-
-        builder.setTitle("Create Year");
-        builder.setView(picker);
-        builder.setNegativeButton("Cancel", null);
-        builder.setPositiveButton("Set", null);
-
-        builder.show();
+        DialogSelectDate dialogSelectDate = new DialogSelectDate(new ListenerSelectDate() {
+            @Override
+            public void onSelectDate(Date date) {
+                Log.d(TAG, "onSelectDate() called with: date = [" + date + "]");
+                myService.filtrerReunionsParDate(date);
+                reunionAdapter.notifyDataSetChanged();
+            }
+        });
+        dialogSelectDate.show(getSupportFragmentManager(), "MY_TAG_DATE");
     }
 
     private void filtrerSalle(){
         Log.d(TAG, "filtrerSalle() called");
-        FiltrerSalleDialog filtrerSalleDialog = new FiltrerSalleDialog(new ListenerSelectionSalle() {
+        DialogSelectRoom dialogSelectRoom = new DialogSelectRoom(new ListenerSelectRoom() {
             @Override
-            public void onSelectionSalle(long Id) {
+            public void onSelectRoom(long Id) {
                 myService.filtrerReunionsParSalle(Id);
                 reunionAdapter.notifyDataSetChanged();
             }
         });
-        filtrerSalleDialog.show(getSupportFragmentManager(), "MY_TAG");
+        dialogSelectRoom.show(getSupportFragmentManager(), "MY_TAG_SALLE");
     }
 
     private void supprimerFiltre(){

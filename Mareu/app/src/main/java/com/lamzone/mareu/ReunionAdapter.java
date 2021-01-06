@@ -26,8 +26,6 @@ import java.util.List;
 
 public class ReunionAdapter extends RecyclerView.Adapter<ReunionAdapter.ReunionViewHolder> {
 
-    private static final String TAG = "ReunionAdapter";
-
     public static class ReunionViewHolder extends RecyclerView.ViewHolder {
 
         TextView sujet;

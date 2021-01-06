@@ -127,10 +127,10 @@ public abstract class DummyGenerator {
 
     private static Date DATE_DEBUT_1 = new GregorianCalendar(2020, Calendar.DECEMBER, 10, 10, 30).getTime();
     private static Date DATE_FIN_1 = new GregorianCalendar(2020, Calendar.DECEMBER, 10, 12, 0).getTime();
-    private static Date DATE_DEBUT_2 = new GregorianCalendar(2020, Calendar.DECEMBER, 11, 9, 0).getTime();
-    private static Date DATE_FIN_2 = new GregorianCalendar(2020, Calendar.DECEMBER, 11, 12, 0).getTime();
-    private static Date DATE_DEBUT_3 = new GregorianCalendar(2020, Calendar.DECEMBER, 12, 14,0).getTime();
-    private static Date DATE_FIN_3 = new GregorianCalendar(2020, Calendar.DECEMBER, 12, 17,0).getTime();
+    private static Date DATE_DEBUT_2 = new GregorianCalendar(2021, Calendar.JANUARY, 8, 14, 0).getTime();
+    private static Date DATE_FIN_2 = new GregorianCalendar(2021, Calendar.JANUARY, 8, 15, 0).getTime();
+    private static Date DATE_DEBUT_3 = new GregorianCalendar(2021, Calendar.JANUARY, 8, 14,0).getTime();
+    private static Date DATE_FIN_3 = new GregorianCalendar(2021, Calendar.JANUARY, 8, 15,0).getTime();
     private static Date DATE_DEBUT_4 = new GregorianCalendar(2020, Calendar.DECEMBER, 13, 15, 30).getTime();
     private static Date DATE_FIN_4 = new GregorianCalendar(2020, Calendar.DECEMBER, 13, 17, 0).getTime();
     private static Date DATE_DEBUT_5 = new GregorianCalendar(2020, Calendar.DECEMBER, 14, 10, 45).getTime();
@@ -151,11 +151,11 @@ public abstract class DummyGenerator {
     private static Date DATE_FIN_12 = new GregorianCalendar(2020, Calendar.DECEMBER, 21, 17, 0).getTime();
 
     public static List<Reunion> DUMMY_REUNION = Arrays.asList(
-            new Reunion(1L, "Projet Unicorn", DATE_DEBUT_1, DATE_FIN_1, 12L, DUMMY_PARTICIPANT_1),
+            new Reunion(1L, "Projet Unicorn", DATE_DEBUT_1, DATE_FIN_1, 1L, DUMMY_PARTICIPANT_1),
             new Reunion(2L, "Réunion commerciale", DATE_DEBUT_2, DATE_FIN_2, 6L, DUMMY_PARTICIPANT_2),
             new Reunion(3L, "Robotic Management System", DATE_DEBUT_3, DATE_FIN_3, 3L, DUMMY_PARTICIPANT_3),
             new Reunion(4L, "Evolution site web", DATE_DEBUT_4, DATE_FIN_4, 1L, DUMMY_PARTICIPANT_4),
-            new Reunion(5L, "Point comptabilité", DATE_DEBUT_5, DATE_FIN_5, 9L, DUMMY_PARTICIPANT_5),
+            new Reunion(5L, "Point comptabilité", DATE_DEBUT_5, DATE_FIN_5, 2L, DUMMY_PARTICIPANT_5),
             new Reunion(6L, "Projet JetAssembly", DATE_DEBUT_6, DATE_FIN_6, 11L, DUMMY_PARTICIPANT_6),
             new Reunion(7L, "Codir", DATE_DEBUT_7, DATE_FIN_7, 13L, DUMMY_PARTICIPANT_7),
             new Reunion(8L, "Réunion commerciale", DATE_DEBUT_8, DATE_FIN_8, 6L, DUMMY_PARTICIPANT_2),

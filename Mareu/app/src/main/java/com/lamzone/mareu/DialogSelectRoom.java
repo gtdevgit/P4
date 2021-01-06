@@ -9,35 +9,34 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.lamzone.mareu.di.DI;
-import com.lamzone.mareu.listener.ListenerSelectionSalle;
+import com.lamzone.mareu.listener.ListenerSelectRoom;
 import com.lamzone.mareu.model.Salle;
 import com.lamzone.mareu.service.ReunionApiService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FiltrerSalleDialog extends DialogFragment {
+public class DialogSelectRoom extends DialogFragment {
 
     private static final String TAG="ChercherParSalle";
-    private ListenerSelectionSalle listenerSelectionSalle;
+    private ListenerSelectRoom listenerSelectRoom;
 
-    public FiltrerSalleDialog() {
+    public DialogSelectRoom() {
     }
 
-    public FiltrerSalleDialog(ListenerSelectionSalle listenerSelectionSalle) {
-        this.listenerSelectionSalle = listenerSelectionSalle;
+    public DialogSelectRoom(ListenerSelectRoom listenerSelectRoom) {
+        this.listenerSelectRoom = listenerSelectRoom;
     }
 
-    public ListenerSelectionSalle getListenerSelectionSalle() {
-        return listenerSelectionSalle;
+    public ListenerSelectRoom getListenerSelectRoom() {
+        return listenerSelectRoom;
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        ReunionApiService service = DI.getReunionApiService();
-
         // cré une liste de nom de salles
+        ReunionApiService service = DI.getReunionApiService();
         List<String> lstNomSalle = new ArrayList<String>();
         for (Salle salle : service.getSalles()){
             lstNomSalle.add(salle.getNom());
@@ -54,7 +53,7 @@ public class FiltrerSalleDialog extends DialogFragment {
                         // le liste des noms est parallele à la liste des salles, aussi l'on peut utiliser l' index "which" pour recherche l'objet salle et obtenir son id.
                         long id = service.getSalles().get(which).getId();
                         // notification de selection d'une salel
-                        getListenerSelectionSalle().onSelectionSalle(id);
+                        getListenerSelectRoom().onSelectRoom(id);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
