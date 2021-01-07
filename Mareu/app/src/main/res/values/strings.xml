@@ -28,5 +28,6 @@
     <string name="add_metting_validate_hint">Valider la création de la réunion</string>
     <string name="add_metting_cancel_hint">Annuler la création de la réunion</string>
     <string name="add_metting_button_add_email_content_description">button ajouter email</string>
+    <string name="bouton_ajouter_description">bouton ajouter</string>
 
 </resources>

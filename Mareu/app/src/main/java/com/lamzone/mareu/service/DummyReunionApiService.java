@@ -11,9 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 public class DummyReunionApiService implements ReunionApiService{
-
-    private static final String TAG = "DummyReunionApiService";
-
     private List<Salle> salles = DummyGenerator.generateSalles();
     private List<String> collaborateurs = DummyGenerator.generateCollaborateurs();
     private List<Reunion> reunions = DummyGenerator.generateReunions();
@@ -87,18 +84,7 @@ public class DummyReunionApiService implements ReunionApiService{
 
     @Override
     public void deleteReunion(Reunion reunion) {
-        Log.d(TAG, "deleteReunion() called with: reunion = [" + reunion + "]");
         reunions.remove(reunion);
-        Log.d(TAG, "deleteReunion() reunions.size() = [" + reunions.size() + "]");
-    }
-
-    @Override
-    public String[] arrayNomSalle() {
-        String[] lst = new String[salles.size()];
-        for (int i = 0; i < salles.size(); i++) {
-            lst[i] = salles.get(i).getNom();
-        }
-        return lst;
     }
 
     @Override

@@ -47,8 +47,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         recyclerView = findViewById(R.id.reunion_recyclerview);
         layoutManager = new LinearLayoutManager(this);
