@@ -26,6 +26,7 @@ import com.lamzone.mareu.service.ReunionApiService;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +39,7 @@ public class AddActivity extends AppCompatActivity {
 
     public static final int RESULTCODE_ANNULER_CRER_ACTIVITY = 0;
     public static final int RESULTCODE_VALIDER_CRER_ACTIVITY = 1;
-
+    private static final String DATE_FORMAT_PATTERN = "dd/MM/yy HH:mm";
     // ApiService
     ReunionApiService service;
 
@@ -105,7 +106,7 @@ public class AddActivity extends AppCompatActivity {
                                                 cal.clear();
                                                 cal.set(year, monthOfYear, dayOfMonth, hourOfDay, minute);
                                                 Date date = cal.getTime();
-                                                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+                                                DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_PATTERN);
                                                 String strDateDebut = dateFormat.format(date);
                                                 textInputDate.setText(strDateDebut);
                                             }
@@ -157,7 +158,13 @@ public class AddActivity extends AppCompatActivity {
                 String strDate = textInputDate.getText().toString();
                 if ((sujet.trim().length() > 0) && (strDate.trim().length() > 0)) {
                     Salle salle = (Salle) spinnerSalle.getSelectedItem();
-                    Date date = new Date();
+                    DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_PATTERN);
+                    Date date = null;
+                    try {
+                        date = dateFormat.parse(strDate);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     String strEmail = textViewListeEmail.getText().toString();
                     String[] arrayEmail = strEmail.split("\n");
                     List<String> lstEmail = Arrays.asList(arrayEmail);

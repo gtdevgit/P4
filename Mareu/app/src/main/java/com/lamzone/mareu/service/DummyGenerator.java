@@ -15,8 +15,6 @@ import java.util.List;
 
 public abstract class DummyGenerator {
 
-
-
     private static List<Salle> DUMMY_SALLE_0 = Arrays.asList(
             new Salle (1L, "Voltaire", R.color.salle_1), //0xFFF44336
             new Salle (2L, "Diderot", R.color.salle_2),
@@ -39,15 +37,15 @@ public abstract class DummyGenerator {
     private static List<Salle> DUMMY_SALLE = Arrays.asList(
             new Salle (1L, "Voltaire", 0xFFF44336),
             new Salle (2L, "Diderot", 0xFF009688),
-            new Salle (3L, "Rousseau", 0xFFE91E63),
+            new Salle (3L, "Rousseau",  0xFF9C27B0),
             new Salle (4L, "Montesquieu", 0xFF4CAF50),
-            new Salle (5L, "Beaumarchais", 0xFF9C27B0),
+            new Salle (5L, "Beaumarchais", 0xFF2196F3),
 
             new Salle (6L, "D'Alembert", 0xFFCDDC39),
             new Salle (7L, "Bernoulli", 0xFF673AB7),
             new Salle (8L, "Euler", 0xFFFFEB3B),
             new Salle (9L, "Laplace", 0xFF3F51B5),
-            new Salle (10L, "Lagrange", 0xFF2196F3),
+            new Salle (10L, "Lagrange",0xFFE91E63),
 
             new Salle (11L, "Monge", 0xFFFFC107),
             new Salle (12L, "Condorcet", 0xFF03A9F4),
@@ -124,7 +122,6 @@ public abstract class DummyGenerator {
             "martine@lamzone.fr",
             "claire@lamzone.fr");
 
-
     private static Date DATE_DEBUT_1 = new GregorianCalendar(2020, Calendar.DECEMBER, 10, 10, 30).getTime();
     private static Date DATE_FIN_1 = new GregorianCalendar(2020, Calendar.DECEMBER, 10, 12, 0).getTime();
     private static Date DATE_DEBUT_2 = new GregorianCalendar(2021, Calendar.JANUARY, 8, 14, 0).getTime();
@@ -156,7 +153,7 @@ public abstract class DummyGenerator {
             new Reunion(3L, "Robotic Management System", DATE_DEBUT_3, DATE_FIN_3, 3L, DUMMY_PARTICIPANT_3),
             new Reunion(4L, "Evolution site web", DATE_DEBUT_4, DATE_FIN_4, 1L, DUMMY_PARTICIPANT_4),
             new Reunion(5L, "Point comptabilité", DATE_DEBUT_5, DATE_FIN_5, 2L, DUMMY_PARTICIPANT_5),
-            new Reunion(6L, "Projet JetAssembly", DATE_DEBUT_6, DATE_FIN_6, 11L, DUMMY_PARTICIPANT_6),
+            new Reunion(6L, "Projet JetAssembly", DATE_DEBUT_6, DATE_FIN_6, 1L, DUMMY_PARTICIPANT_6),
             new Reunion(7L, "Codir", DATE_DEBUT_7, DATE_FIN_7, 13L, DUMMY_PARTICIPANT_7),
             new Reunion(8L, "Réunion commerciale", DATE_DEBUT_8, DATE_FIN_8, 6L, DUMMY_PARTICIPANT_2),
             new Reunion(9L, "Projet Unicorn", DATE_DEBUT_9, DATE_FIN_9, 12L, DUMMY_PARTICIPANT_1),
@@ -168,5 +165,4 @@ public abstract class DummyGenerator {
     public static List<Salle> generateSalles() { return new ArrayList<>(DUMMY_SALLE); }
     public static List<String> generateCollaborateurs() { return new ArrayList<>(DUMMY_COLLABORATEUR); }
     public static List<Reunion> generateReunions() { return new ArrayList<>(DUMMY_REUNION); }
-
 }

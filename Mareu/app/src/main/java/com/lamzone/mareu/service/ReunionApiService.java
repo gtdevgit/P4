@@ -33,6 +33,7 @@ public interface ReunionApiService {
     void filtrerReunionsParSalle(long idSalle);
     void filtrerReunionsParDate(Date date);
     void supprimerFiltreReunion();
+    int nbReunionParSalle(long idSalle);
 
     Salle findSalleById(long id);
 

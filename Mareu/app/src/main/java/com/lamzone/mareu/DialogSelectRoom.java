@@ -38,8 +38,13 @@ public class DialogSelectRoom extends DialogFragment {
         // cré une liste de nom de salles
         ReunionApiService service = DI.getReunionApiService();
         List<String> lstNomSalle = new ArrayList<String>();
+        List<Long> lstIdSalle = new ArrayList<Long>();
         for (Salle salle : service.getSalles()){
-            lstNomSalle.add(salle.getNom());
+            int nbReunion = service.nbReunionParSalle(salle.getId());
+            if (nbReunion > 0) {
+                lstNomSalle.add(salle.getNom() + " (" + nbReunion + ")");
+                lstIdSalle.add(salle.getId());
+            }
         }
         String[] arrayNonSalle = lstNomSalle.toArray(new String[0]);
 
@@ -50,8 +55,8 @@ public class DialogSelectRoom extends DialogFragment {
                         // The 'which' argument contains the index position
                         // of the selected item
                         Log.d(TAG, "Item. onClick() called with: dialog = [" + dialog + "], which = [" + which + "]");
-                        // le liste des noms est parallele à la liste des salles, aussi l'on peut utiliser l' index "which" pour recherche l'objet salle et obtenir son id.
-                        long id = service.getSalles().get(which).getId();
+                        // le liste des noms est parallele à la liste des index, l' index "which" pour recherche l'id de la salle dans la liste lstIdSalle.
+                        long id = lstIdSalle.get(which);
                         // notification de selection d'une salel
                         getListenerSelectRoom().onSelectRoom(id);
                     }

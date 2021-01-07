@@ -92,15 +92,16 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_item_filtrer_date :
                 filtrerDate();
-                break;
+                return true;
             case R.id.menu_item_filtrer_salle:
                 filtrerSalle();
-                break;
+                return true;
             case R.id.menu_item_supprimer_filtre:
                 supprimerFiltre();
-                break;
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
     private void filtrerDate(){

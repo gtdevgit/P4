@@ -73,6 +73,19 @@ public class DummyReunionApiService implements ReunionApiService{
     }
 
     @Override
+    public int nbReunionParSalle(long idSalle) {
+        int count = 0;
+        List<Reunion> r = DummyGenerator.generateReunions();
+        for (int i=0; i<r.size(); i++){
+            Reunion reunion = r.get(i);
+            if (reunion.getIdSalle() == idSalle) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
     public void deleteReunion(Reunion reunion) {
         Log.d(TAG, "deleteReunion() called with: reunion = [" + reunion + "]");
         reunions.remove(reunion);
