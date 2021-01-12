@@ -41,7 +41,7 @@ public abstract class DummyGenerator {
             new Salle (4L, "Montesquieu", 0xFF4CAF50),
             new Salle (5L, "Beaumarchais", 0xFF2196F3),
 
-            new Salle (6L, "D'Alembert", 0xFFCDDC39),
+            new Salle (6L, "Buffon", 0xFFCDDC39),
             new Salle (7L, "Bernoulli", 0xFF673AB7),
             new Salle (8L, "Euler", 0xFFFFEB3B),
             new Salle (9L, "Laplace", 0xFF3F51B5),
@@ -50,7 +50,7 @@ public abstract class DummyGenerator {
             new Salle (11L, "Monge", 0xFFFFC107),
             new Salle (12L, "Condorcet", 0xFF03A9F4),
             new Salle (13L, "Lavoisier", 0xFFFF9800),
-            new Salle (14L, "Buffon", 0xFF00BCD4)
+            new Salle (14L, "D'Alembert", 0xFF00BCD4)
     );
 
     private static List<String> DUMMY_COLLABORATEUR = Arrays.asList(
