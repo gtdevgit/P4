@@ -26,12 +26,9 @@ Le projet est développé en __java__ avec __Android Studio__.
 ## Les tests unitaires
 Des tests unitaires sont disponibles dans le répertoire /src/test/  
 Ils utilisent junit4.  
-Les méthodes disponibles sont :  
-...
 
 ## Les tests instumentalisés
 Des tests instrumentalisés sont disponibles dans le répertoire /src/androidTest/  
 Ils utilisent junit et Espresso  
-Les méthodes disponibles sont :  
-...
+
 
