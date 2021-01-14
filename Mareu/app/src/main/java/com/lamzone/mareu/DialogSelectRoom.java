@@ -57,7 +57,7 @@ public class DialogSelectRoom extends DialogFragment {
                         Log.d(TAG, "Item. onClick() called with: dialog = [" + dialog + "], which = [" + which + "]");
                         // le liste des noms est parallele à la liste des index, l' index "which" pour recherche l'id de la salle dans la liste lstIdSalle.
                         long id = lstIdSalle.get(which);
-                        // notification de selection d'une salel
+                        // notification de selection d'une salle
                         getListenerSelectRoom().onSelectRoom(id);
                     }
                 })

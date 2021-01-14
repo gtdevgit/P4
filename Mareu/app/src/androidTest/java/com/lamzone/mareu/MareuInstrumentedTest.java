@@ -105,6 +105,7 @@ public class MareuInstrumentedTest {
     }
 
     /*
+    // TODO : Ne fonctionne pas, à revoir avec un PickerAction.
     @Test
     public void listMetting_FilteredByDate_shouldShowDate() {
         ViewInteraction overflowMenuButton = onView(
