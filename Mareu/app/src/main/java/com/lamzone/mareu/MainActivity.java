@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.reunion_recyclerview);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        myService = DI.getNewInstanceApiService();
+        myService = DI.getReunionApiService();
         listenerNotifyDataChanged = new ListenerNotifyDataChanged() {
             @Override
             public void onDataChanged() {
