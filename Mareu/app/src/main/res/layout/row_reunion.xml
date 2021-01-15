@@ -11,6 +11,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/pastille_couleur_salle"
         android:src="@drawable/ic_baseline_brightness_1_24"
         app:srcCompat="@drawable/ic_baseline_brightness_1_24" />
 
@@ -23,42 +24,44 @@
         android:layout_toEndOf="@+id/image_rond"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Sujet"
+        android:text="@string/sujet"
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/reunion_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/reunion_subject"
         android:layout_marginRight="8dp"
         android:layout_toEndOf="@+id/image_rond"
-        android:layout_below="@+id/reunion_subject"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Salle"
+        android:text="@string/salle"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
     <TextView
         android:id="@+id/reunion_indent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/reunion_subject"
         android:layout_marginRight="8dp"
         android:layout_toEndOf="@+id/reunion_room"
-        android:layout_below="@+id/reunion_subject"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="-"
+        android:text="@string/indent"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
     <TextView
         android:id="@+id/reunion_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/button_delete"
-        android:layout_toEndOf="@+id/reunion_indent"
         android:layout_below="@+id/reunion_subject"
         android:layout_marginRight="8dp"
+        android:layout_toStartOf="@+id/button_delete"
+        android:layout_toEndOf="@+id/reunion_indent"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="date"
+        android:text="@string/date"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
     <TextView
@@ -66,12 +69,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/reunion_date"
+        android:layout_marginEnd="8dp"
         android:layout_toStartOf="@+id/button_delete"
         android:layout_toEndOf="@+id/image_rond"
-        android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="liste des participants"
+        android:text="@string/liste_des_participants"
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
     <ImageButton

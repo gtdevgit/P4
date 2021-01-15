@@ -15,7 +15,8 @@
         android:layout_marginStart="16dp"
         android:layout_gravity="center_vertical"
         app:srcCompat="@drawable/ic_baseline_brightness_1_24"
-        app:tint="@color/salle_1" />
+        app:tint="@color/salle_1"
+        android:contentDescription="@string/pastille_couleur_salle" />
 
     <TextView
         android:id="@+id/custom_spinner_item_text"
@@ -25,6 +26,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:text="Salle"
+        android:text="@string/salle"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 </LinearLayout>

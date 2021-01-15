@@ -13,6 +13,9 @@
     <string name="no">Non</string>
     <string name="cancel">Annuler</string>
     <string name="sujet">Sujet</string>
+    <string name="indent">-</string>
+    <string name="date">Date</string>
+    <string name="liste_des_participants">Liste des participants</string>
     <string name="floatingAddDescription">Boutton créer une réunion</string>
     <string name="cancel_create_metting">Création de réunion annulée</string>
     <string name="confirm_create_metting">Nouvelle réunion créée</string>
@@ -29,5 +32,7 @@
     <string name="add_metting_cancel_hint">Annuler la création de la réunion</string>
     <string name="add_metting_button_add_email_content_description">button ajouter email</string>
     <string name="bouton_ajouter_description">bouton ajouter</string>
+    <string name="pastille_couleur_salle">couleur de la salle</string>
+    <string name="salle">Salle</string>
 
 </resources>
